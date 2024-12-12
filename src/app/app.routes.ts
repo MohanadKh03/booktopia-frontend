@@ -9,6 +9,7 @@ import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-das
 import { AdminBooksComponent } from './pages/admin/admin-books/admin-books.component';
 import { AdminOrdersComponent } from './pages/admin/admin-orders/admin-orders.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { AdminCategoriesComponent } from './pages/admin/admin-categories/admin-categories.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,7 +19,13 @@ export const routes: Routes = [
   { path: 'books/:id', component: BookDetailsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'orders', component: OrderHistoryComponent },
-  { path: 'admin', component: AdminDashboardComponent },
-  { path: 'admin/books', component: AdminBooksComponent },
-  { path: 'admin/orders', component: AdminOrdersComponent },
+  {
+    path: 'admin',
+    component: AdminDashboardComponent,
+    children: [
+      { path: 'books', component: AdminBooksComponent },
+      { path: 'orders', component: AdminOrdersComponent },
+      { path: 'categories', component: AdminCategoriesComponent },
+    ],
+  },
 ];

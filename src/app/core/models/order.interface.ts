@@ -1,6 +1,6 @@
 export interface Order {
-  id: number;
-  userId: number;
+  id: string;
+  userid: string;
   items: OrderItem[];
   total: number;
   status: 'pending' | 'confirmed' | 'shipped' | 'delivered' | 'cancelled';
@@ -10,7 +10,7 @@ export interface Order {
 }
 
 export interface OrderItem {
-  bookId: number;
+  bookid: string;
   quantity: number;
   price: number;
 }

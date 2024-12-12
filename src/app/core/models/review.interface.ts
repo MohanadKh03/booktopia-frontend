@@ -1,7 +1,7 @@
 export interface Review {
-  id: number;
-  userId: number;
-  bookId: number;
+  id: string;
+  userid: string;
+  bookid: string;
   rating: number;
   comment: string;
   createdAt: Date;

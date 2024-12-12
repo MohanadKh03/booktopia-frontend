@@ -21,7 +21,7 @@ export class BookDetailsComponent {
     private cartService: CartService
   ) {
     this.book$ = this.bookService
-      .getBookById(Number(this.route.snapshot.paramMap.get('id')))
+      .getBookById(String(this.route.snapshot.paramMap.get('id')))
       .pipe(filter((book): book is Book => book !== undefined));
   }
 

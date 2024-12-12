@@ -94,7 +94,11 @@
           <div class="d-flex justify-content-between align-items-center mb-4">
             <h5 class="card-title mb-0">Sales Overview</h5>
             <div class="dropdown">
-              <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown">
+              <button
+                class="btn btn-link dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+              >
                 This Month
               </button>
               <ul class="dropdown-menu">
@@ -105,7 +109,7 @@
             </div>
           </div>
           <!-- Add Chart Component Here -->
-          <div class="chart-placeholder" style="height: 300px;"></div>
+          <div class="chart-placeholder" style="height: 300px"></div>
         </div>
       </div>
     </div>
@@ -120,7 +124,7 @@
                 <h6 class="mb-0">Fiction</h6>
                 <small class="text-muted">45 books</small>
               </div>
-              <div class="progress" style="width: 100px;">
+              <div class="progress" style="width: 100px">
                 <div class="progress-bar" style="width: 70%"></div>
               </div>
             </div>
@@ -129,7 +133,7 @@
                 <h6 class="mb-0">Technology</h6>
                 <small class="text-muted">32 books</small>
               </div>
-              <div class="progress" style="width: 100px;">
+              <div class="progress" style="width: 100px">
                 <div class="progress-bar" style="width: 55%"></div>
               </div>
             </div>
@@ -138,7 +142,7 @@
                 <h6 class="mb-0">Business</h6>
                 <small class="text-muted">28 books</small>
               </div>
-              <div class="progress" style="width: 100px;">
+              <div class="progress" style="width: 100px">
                 <div class="progress-bar" style="width: 40%"></div>
               </div>
             </div>
@@ -147,4 +151,41 @@
       </div>
     </div>
   </div>
+</div>
+<!-- Navigation Links -->
+<div class="container p-2 border-bottom border-black">
+  <ul class="nav d-flex justify-content-evenly">
+    <li class="nav-item">
+      <a
+        class="nav-link text-black"
+        routerLink="orders"
+        routerLinkActive="active tabunderline fw-semibold"
+      >
+        <i class="fas fa-heart"></i> Orders
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link text-black"
+        routerLink="books"
+        routerLinkActive="active tabunderline fw-semibold"
+      >
+        <i class="fas fa-user"></i> Books
+      </a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link text-black"
+        routerLink="categories"
+        routerLinkActive="active tabunderline fw-semibold"
+      >
+        <i class="fas fa-user"></i> Categories
+      </a>
+    </li>
+  </ul>
+</div>
+
+<!-- Followers/Following List -->
+<div class="container py-3">
+  <router-outlet></router-outlet>
 </div>
