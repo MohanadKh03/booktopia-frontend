@@ -7,6 +7,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
   standalone: true,
   imports: [RouterOutlet, NavbarComponent],
   templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'booktopia-frontend';

@@ -11,9 +11,16 @@ import { Book } from '../../core/models/book.interface';
   standalone: true,
   imports: [AsyncPipe, BookCardComponent, SearchFilterComponent],
   templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
   books$;
+  categories = [
+    { id: 1, name: 'Fiction', icon: 'fas fa-book', bookCount: 150 },
+    { id: 2, name: 'Technology', icon: 'fas fa-laptop-code', bookCount: 85 },
+    { id: 3, name: 'Business', icon: 'fas fa-chart-line', bookCount: 120 },
+    { id: 4, name: 'Arts', icon: 'fas fa-palette', bookCount: 95 }
+  ];
 
   constructor(
     private bookService: BookService,
@@ -37,7 +44,7 @@ export class HomeComponent implements OnInit {
       id: book.id,
       title: book.title,
       price: book.price,
-      quantity: 1,
+      quantity: 1
     });
   }
 }

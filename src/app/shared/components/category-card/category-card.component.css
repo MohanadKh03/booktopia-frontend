@@ -1,0 +1,53 @@
+.category-card {
+  background: white;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+  cursor: pointer;
+}
+
+.icon-wrapper {
+  font-size: 2.5rem;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.category-title {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.hover-content {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  right: 0;
+  background: rgba(13, 110, 253, 0.9);
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.category-card:hover .hover-content {
+  bottom: 0;
+}
+
+.category-card:hover .icon-wrapper i {
+  animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}

@@ -1,0 +1,45 @@
+.stats-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+
+.card {
+  border-radius: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.progress {
+  height: 8px;
+  border-radius: 4px;
+}
+
+.chart-placeholder {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 0.5rem;
+}
+
+.category-stats .progress-bar {
+  background: linear-gradient(90deg, #0d6efd, #0a58ca);
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.btn-link {
+  color: #6c757d;
+  text-decoration: none;
+}
+
+.btn-link:hover {
+  color: #0d6efd;
+}

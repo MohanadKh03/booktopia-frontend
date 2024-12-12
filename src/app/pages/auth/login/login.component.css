@@ -1,0 +1,27 @@
+.auth-container {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.card {
+  border-radius: 1rem;
+}
+
+.auth-form .form-control {
+  border-radius: 0.5rem;
+  padding: 1rem 0.75rem;
+}
+
+.auth-form .form-control:focus {
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+.btn-primary {
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}

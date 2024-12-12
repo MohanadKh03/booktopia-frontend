@@ -1,0 +1,43 @@
+.hero-section {
+  background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+  border-radius: 0 0 2rem 2rem;
+}
+
+.section-title {
+  position: relative;
+  padding-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 3px;
+  background-color: #0d6efd;
+}
+
+.category-card {
+  background: white;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+}
+
+.hover-effect {
+  transition: all 0.3s ease;
+}
+
+.hover-effect:hover {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.newsletter-section {
+  background-color: #f8f9fa;
+  border-radius: 2rem 2rem 0 0;
+}
