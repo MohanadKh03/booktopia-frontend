@@ -7,6 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "dev": "ng serve",
     "serve:ssr:booktopia-frontend": "node dist/booktopia-frontend/server/server.mjs"
   },
   "private": true,

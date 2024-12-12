@@ -1,0 +1,13 @@
+<div class="container mt-4">
+    <app-search-filter (onSearch)="handleSearch($event)" (onCategoryChange)="handleCategoryChange($event)">
+    </app-search-filter>
+
+    <div class="row">
+        @for (book of books$ | async; track book.id) {
+        <div class="col-md-3 mb-4">
+            <app-book-card [book]="book" (onAddToCart)="addToCart($event)">
+            </app-book-card>
+        </div>
+        }
+    </div>
+</div>

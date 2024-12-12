@@ -1,0 +1,17 @@
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search books..." [(ngModel)]="searchTerm"
+                (ngModelChange)="onSearch.emit($event)">
+            <button class="btn btn-primary">Search</button>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <select class="form-select" [(ngModel)]="selectedCategory" (ngModelChange)="onCategoryChange.emit($event)">
+            <option value="">All Categories</option>
+            <option value="it">IT</option>
+            <option value="history">History</option>
+            <option value="classics">Classics</option>
+        </select>
+    </div>
+</div>
