@@ -1,0 +1,72 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
+  <div class="form-floating mb-3">
+    <input 
+      type="text" 
+      class="form-control" 
+      id="name"
+      placeholder="Your Name"
+      formControlName="name"
+      [class.is-invalid]="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">
+    <label for="name">Full Name</label>
+    @if (registerForm.get('name')?.invalid && registerForm.get('name')?.touched) {
+      <div class="invalid-feedback">
+        @if (registerForm.get('name')?.errors?.['required']) {
+          Name is required
+        } @else if (registerForm.get('name')?.errors?.['minlength']) {
+          Name must be at least 2 characters
+        }
+      </div>
+    }
+  </div>
+
+  <div class="form-floating mb-3">
+    <input 
+      type="email" 
+      class="form-control" 
+      id="email"
+      placeholder="name@example.com"
+      formControlName="email"
+      [class.is-invalid]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+    <label for="email">Email address</label>
+    @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+      <div class="invalid-feedback">Please enter a valid email address</div>
+    }
+  </div>
+
+  <div class="form-floating mb-3">
+    <input 
+      type="password" 
+      class="form-control" 
+      id="password"
+      placeholder="Password"
+      formControlName="password"
+      [class.is-invalid]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+    <label for="password">Password</label>
+    @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+      <div class="invalid-feedback">
+        Password must be at least 8 characters long
+      </div>
+    }
+  </div>
+
+  <div class="form-floating mb-4">
+    <input 
+      type="password" 
+      class="form-control" 
+      id="confirmPassword"
+      placeholder="Confirm Password"
+      formControlName="confirmPassword"
+      [class.is-invalid]="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched">
+    <label for="confirmPassword">Confirm Password</label>
+    @if (registerForm.errors?.['passwordMismatch'] && registerForm.get('confirmPassword')?.touched) {
+      <div class="invalid-feedback">Passwords do not match</div>
+    }
+  </div>
+
+  <button 
+    type="submit" 
+    class="btn btn-primary w-100 py-3"
+    [disabled]="registerForm.invalid">
+    <i class="fas fa-user-plus me-2"></i>Create Account
+  </button>
+</form>

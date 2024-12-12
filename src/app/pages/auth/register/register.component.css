@@ -1,0 +1,29 @@
+.auth-container {
+  background: linear-gradient(135deg, var(--light-bg) 0%, #e9ecef 100%);
+}
+
+.card {
+  border-radius: 1.5rem;
+}
+
+.bg-primary {
+  background: var(--primary-color) !important;
+}
+
+.text-primary {
+  color: var(--primary-color) !important;
+}
+
+.invalid-feedback {
+  font-size: 0.875rem;
+}
+
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label {
+  color: var(--primary-color);
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.15);
+}

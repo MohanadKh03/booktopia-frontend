@@ -5,11 +5,12 @@ import { SearchFilterComponent } from './components/search-filter/search-filter.
 import { BookService } from '../../core/services/book.service';
 import { CartService } from '../../core/services/cart.service';
 import { Book } from '../../core/models/book.interface';
+import { NewsletterSectionComponent } from "../../shared/components/newsletter-section/newsletter-section.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [AsyncPipe, BookCardComponent, SearchFilterComponent],
+  imports: [AsyncPipe, BookCardComponent, SearchFilterComponent, NewsletterSectionComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })

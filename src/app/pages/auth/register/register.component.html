@@ -1,26 +1,26 @@
-<div class="container mt-5">
+<div class="auth-container min-vh-100 d-flex align-items-center py-5">
+  <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title text-center mb-4">Register</h3>
-                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                        <div class="mb-3">
-                            <label class="form-label">Name</label>
-                            <input type="text" class="form-control" formControlName="name">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-control" formControlName="email">
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Password</label>
-                            <input type="password" class="form-control" formControlName="password">
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100">Register</button>
-                    </form>
-                </div>
+      <div class="col-md-6 col-lg-5">
+        <div class="card shadow-lg border-0">
+          <div class="card-body p-5">
+            <div class="text-center mb-4">
+              <div class="bg-primary bg-opacity-10 rounded-circle p-3 d-inline-block mb-3">
+                <i class="fas fa-user-plus text-primary display-4"></i>
+              </div>
+              <h2 class="fw-bold text-gradient">Create Account</h2>
+              <p class="text-muted">Join Booktopia and start your reading journey</p>
             </div>
+            
+            <app-register-form (formSubmit)="onRegister($event)"></app-register-form>
+
+            <div class="text-center mt-4">
+              <span class="text-muted">Already have an account?</span>
+              <a routerLink="/login" class="text-primary ms-2">Sign in</a>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>

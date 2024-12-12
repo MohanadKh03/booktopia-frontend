@@ -1,12 +1,14 @@
-<div class="auth-container min-vh-100 d-flex align-items-center">
+<div class="auth-container min-vh-100 d-flex align-items-center py-5">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-6 col-lg-5">
         <div class="card shadow-lg border-0">
           <div class="card-body p-5">
             <div class="text-center mb-4">
-              <i class="fas fa-book-reader text-primary display-4 mb-3"></i>
-              <h2 class="fw-bold">Welcome Back</h2>
+              <div class="bg-primary bg-opacity-10 rounded-circle p-3 d-inline-block mb-3">
+                <i class="fas fa-book-reader text-primary display-4"></i>
+              </div>
+              <h2 class="fw-bold text-gradient">Welcome Back</h2>
               <p class="text-muted">Sign in to continue to Booktopia</p>
             </div>
             
@@ -51,7 +53,7 @@
                 type="submit" 
                 class="btn btn-primary w-100 py-3"
                 [disabled]="loginForm.invalid">
-                Sign In
+                <i class="fas fa-sign-in-alt me-2"></i>Sign In
               </button>
 
               <div class="text-center mt-4">

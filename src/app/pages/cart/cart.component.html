@@ -1,9 +1,14 @@
 <div class="container py-5">
-  <div class="row">
+  <div class="row g-4">
     <div class="col-lg-8">
-      <div class="card border-0 shadow-sm">
-        <div class="card-body">
-          <h3 class="card-title mb-4">Shopping Cart</h3>
+      <div class="card border-0 shadow-custom">
+        <div class="card-body p-4">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="card-title mb-0">
+              <i class="fas fa-shopping-cart text-primary me-2"></i>Shopping Cart
+            </h3>
+            <span class="badge bg-primary">{{ cartItems.length }} Items</span>
+          </div>
           
           @if (cartItems.length > 0) {
             <div class="table-responsive">
@@ -19,28 +24,32 @@
                 </thead>
                 <tbody>
                   @for (item of cartItems; track item.id) {
-                    <tr>
+                    <tr class="animate-fade-in">
                       <td>
                         <div class="d-flex align-items-center">
-                          <img [src]="'assets/book-' + item.id + '.jpg'" class="cart-item-image rounded me-3">
+                          <img [src]="'assets/book-' + item.id + '.jpg'" class="cart-item-image rounded-custom me-3">
                           <div>
                             <h6 class="mb-0">{{ item.title }}</h6>
-                            <small class="text-muted">SKU: #{{ item.id }}</small>
+                            <small class="text-muted">#{{ item.id }}</small>
                           </div>
                         </div>
                       </td>
-                      <td>\${{ item.price }}</td>
+                      <td class="text-primary fw-semibold">\${{ item.price }}</td>
                       <td>
                         <div class="quantity-control">
-                          <button class="btn btn-sm btn-outline-secondary">-</button>
-                          <input type="number" class="form-control" [value]="item.quantity" min="1">
-                          <button class="btn btn-sm btn-outline-secondary">+</button>
+                          <button class="btn btn-sm btn-outline-primary rounded-circle">
+                            <i class="fas fa-minus"></i>
+                          </button>
+                          <input type="number" class="form-control text-center" [value]="item.quantity" min="1">
+                          <button class="btn btn-sm btn-outline-primary rounded-circle">
+                            <i class="fas fa-plus"></i>
+                          </button>
                         </div>
                       </td>
-                      <td>\${{ item.price * item.quantity }}</td>
+                      <td class="fw-semibold">\${{ item.price * item.quantity }}</td>
                       <td>
                         <button class="btn btn-link text-danger">
-                          <i class="fas fa-trash"></i>
+                          <i class="fas fa-trash-alt"></i>
                         </button>
                       </td>
                     </tr>
@@ -50,10 +59,14 @@
             </div>
           } @else {
             <div class="text-center py-5">
-              <i class="fas fa-shopping-cart text-muted display-4 mb-3"></i>
-              <h5>Your cart is empty</h5>
-              <p class="text-muted">Browse our collection and add some books!</p>
-              <a routerLink="/" class="btn btn-primary">Continue Shopping</a>
+              <div class="mb-4">
+                <i class="fas fa-shopping-cart text-muted display-1"></i>
+              </div>
+              <h5 class="mb-3">Your cart is empty</h5>
+              <p class="text-muted mb-4">Browse our collection and add some books!</p>
+              <a routerLink="/" class="btn btn-primary px-4 py-2">
+                <i class="fas fa-books me-2"></i>Continue Shopping
+              </a>
             </div>
           }
         </div>
@@ -61,36 +74,46 @@
     </div>
 
     <div class="col-lg-4">
-      <div class="card border-0 shadow-sm">
-        <div class="card-body">
-          <h5 class="card-title mb-4">Order Summary</h5>
+      <div class="card border-0 shadow-custom">
+        <div class="card-body p-4">
+          <h5 class="card-title mb-4">
+            <i class="fas fa-receipt text-primary me-2"></i>Order Summary
+          </h5>
           
-          <div class="d-flex justify-content-between mb-2">
-            <span>Subtotal</span>
-            <span>\${{ calculateTotal() }}</span>
+          <div class="d-flex justify-content-between mb-3">
+            <span class="text-muted">Subtotal</span>
+            <span class="fw-semibold">\${{ calculateTotal() }}</span>
           </div>
-          <div class="d-flex justify-content-between mb-2">
-            <span>Shipping</span>
-            <span>Free</span>
+          <div class="d-flex justify-content-between mb-3">
+            <span class="text-muted">Shipping</span>
+            <span class="text-success">Free</span>
           </div>
-          <hr>
+          <hr class="my-4">
           <div class="d-flex justify-content-between mb-4">
-            <strong>Total</strong>
-            <strong class="text-primary">\${{ calculateTotal() }}</strong>
+            <span class="fw-bold">Total</span>
+            <span class="fw-bold text-primary">\${{ calculateTotal() }}</span>
           </div>
 
-          <button class="btn btn-primary w-100 py-3">
-            Proceed to Checkout
+          <button class="btn btn-primary w-100 py-3 mb-3">
+            <i class="fas fa-lock me-2"></i>Proceed to Checkout
           </button>
+
+          <div class="text-center">
+            <a routerLink="/" class="text-muted text-decoration-none">
+              <i class="fas fa-arrow-left me-2"></i>Continue Shopping
+            </a>
+          </div>
         </div>
       </div>
 
-      <div class="card border-0 shadow-sm mt-4">
-        <div class="card-body">
-          <h6 class="mb-3">Have a coupon?</h6>
+      <div class="card border-0 shadow-custom mt-4">
+        <div class="card-body p-4">
+          <h6 class="mb-3">
+            <i class="fas fa-tag text-primary me-2"></i>Have a coupon?
+          </h6>
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Enter code">
-            <button class="btn btn-outline-primary">Apply</button>
+            <button class="btn btn-primary px-4">Apply</button>
           </div>
         </div>
       </div>

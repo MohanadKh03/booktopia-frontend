@@ -1,26 +1,18 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { RegisterFormComponent } from './components/register-form/register-form.component';
+import { RegisterData } from './models/register.model';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [RouterLink, RegisterFormComponent],
   templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  registerForm: FormGroup;
-
-  constructor(private fb: FormBuilder) {
-    this.registerForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
-    });
-  }
-
-  onSubmit() {
-    if (this.registerForm.valid) {
-      console.log(this.registerForm.value);
-    }
+  onRegister(data: RegisterData) {
+    console.log('Registration data:', data);
+    // Implement registration logic
   }
 }
