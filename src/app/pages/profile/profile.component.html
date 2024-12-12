@@ -1,0 +1,57 @@
+<div class="container py-5">
+  <div class="row g-4">
+    <div class="col-md-6 offset-md-3">
+      <div class="card border-0 shadow-custom">
+        <div class="card-body p-4">
+          <h4 class="card-title mb-4">Update Profile</h4>
+          <form (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input
+                type="text"
+                id="name"
+                class="form-control"
+                [(ngModel)]="name"
+                name="name"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                id="email"
+                class="form-control"
+                [(ngModel)]="email"
+                name="email"
+                required
+              />
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input
+                type="tel"
+                id="phone"
+                class="form-control"
+                [(ngModel)]="phone"
+                name="phone"
+              />
+            </div>
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-primary btn-lg">
+                Save Changes
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-secondary btn-lg"
+                (click)="resetForm()"
+              >
+                Reset to original data
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,11 +8,13 @@ import { OrderHistoryComponent } from './pages/orders/order-history/order-histor
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
 import { AdminBooksComponent } from './pages/admin/admin-books/admin-books.component';
 import { AdminOrdersComponent } from './pages/admin/admin-orders/admin-orders.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'books/:id', component: BookDetailsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'orders', component: OrderHistoryComponent },

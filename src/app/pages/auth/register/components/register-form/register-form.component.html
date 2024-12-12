@@ -33,6 +33,27 @@
     }
   </div>
 
+
+  <div class="form-floating mb-3">
+    <input 
+      type="text" 
+      class="form-control" 
+      id="phone"
+      placeholder="Phone Number"
+      formControlName="phone"
+      [class.is-invalid]="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched">
+    <label for="phone">Phone Number</label>
+    @if (registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched) {
+      <div class="invalid-feedback">
+        @if (registerForm.get('phone')?.errors?.['required']) {
+          Phone number is required
+        } @else if (registerForm.get('phone')?.errors?.['pattern']) {
+          Phone number must be numeric
+        }
+      </div>
+    }
+  </div>
+
   <div class="form-floating mb-3">
     <input 
       type="password" 
@@ -62,6 +83,8 @@
       <div class="invalid-feedback">Passwords do not match</div>
     }
   </div>
+
+  
 
   <button 
     type="submit" 
