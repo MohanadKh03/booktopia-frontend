@@ -8,21 +8,27 @@ import { Book } from '../models/book.interface';
 export class BookService {
   private books: Book[] = [
     {
-      id: '1',
+      _id: '1',
       title: 'Angular Development',
       author: 'John Doe',
       price: 49.99,
       coverImage: 'https://via.placeholder.com/150',
-      categoryName: 'IT',
+      category: {
+        _id: '1',
+        name: 'IT',
+      },
       stock: 10,
     },
     {
-      id: '2',
+      _id: '2',
       title: 'World History',
       author: 'Jane Smith',
       price: 39.99,
       coverImage: 'https://via.placeholder.com/150',
-      categoryName: 'History',
+      category: {
+        _id: '2',
+        name: 'History',
+      },
       stock: 15,
     },
   ];
@@ -32,6 +38,6 @@ export class BookService {
   }
 
   getBookById(id: string): Observable<Book | undefined> {
-    return of(this.books.find((book) => book.id === id));
+    return of(this.books.find((book) => book._id === id));
   }
 }

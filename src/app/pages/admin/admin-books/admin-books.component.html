@@ -1,37 +1,113 @@
-<div class="container mt-4">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>Manage Books</h2>
-    <button class="btn btn-primary">Add New Book</button>
-  </div>
-  <div class="table-responsive">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Title</th>
-          <th>Author</th>
-          <th>Price</th>
-          <th>Category</th>
-          <th>Stock</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (book of books; track book.id) {
-        <tr>
-          <td>{{ book.id }}</td>
-          <td>{{ book.title }}</td>
-          <td>{{ book.author }}</td>
-          <td>${{ book.price }}</td>
-          <td>{{ book.categoryName }}</td>
-          <td>{{ book.stock }}</td>
-          <td>
-            <button class="btn btn-sm btn-warning me-2">Edit</button>
-            <button class="btn btn-sm btn-danger">Delete</button>
-          </td>
-        </tr>
-        }
-      </tbody>
-    </table>
+<div class="container mt-5">
+  <h2>Manage Books</h2>
+
+  <button class="btn btn-primary" (click)="openAddBookModal()">
+    Add New Book
+  </button>
+
+  <!-- Books Table -->
+  <table class="table mt-3">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books">
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.category.name }}</td>
+        <td>{{ book.price }}</td>
+        <td>{{ book.stock }}</td>
+        <td>
+          <button class="btn btn-warning" (click)="startEditing(book)">
+            Edit
+          </button>
+          <button class="btn btn-danger" (click)="deleteBook(book._id)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Add/Edit Book Modal -->
+  <div *ngIf="toggleForm" class="mt-4">
+    <h3>{{ isEditing ? "Edit Book" : "Add New Book" }}</h3>
+    <form (ngSubmit)="isEditing ? saveEdit() : addBook()">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input
+          [(ngModel)]="currentBook.title"
+          name="title"
+          id="title"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="author">Author</label>
+        <input
+          [(ngModel)]="currentBook.author"
+          name="author"
+          id="author"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select
+          [(ngModel)]="currentBook.category._id"
+          name="category"
+          id="category"
+          class="form-control"
+          required
+        >
+          <option *ngFor="let category of categories" [value]="category._id">
+            {{ category.name }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input
+          [(ngModel)]="currentBook.price"
+          name="price"
+          id="price"
+          type="number"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="stock">Stock</label>
+        <input
+          [(ngModel)]="currentBook.stock"
+          name="stock"
+          id="stock"
+          type="number"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary">
+        {{ isEditing ? "Save Changes" : "Add Book" }}
+      </button>
+
+      <button type="button" class="btn btn-secondary" (click)="cancelEdit()">
+        Cancel
+      </button>
+    </form>
   </div>
 </div>

@@ -5,14 +5,19 @@ import { SearchFilterComponent } from './components/search-filter/search-filter.
 import { BookService } from '../../core/services/book.service';
 import { CartService } from '../../core/services/cart.service';
 import { Book } from '../../core/models/book.interface';
-import { NewsletterSectionComponent } from "../../shared/components/newsletter-section/newsletter-section.component";
+import { NewsletterSectionComponent } from '../../shared/components/newsletter-section/newsletter-section.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [AsyncPipe, BookCardComponent, SearchFilterComponent, NewsletterSectionComponent],
+  imports: [
+    AsyncPipe,
+    BookCardComponent,
+    SearchFilterComponent,
+    NewsletterSectionComponent,
+  ],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
   books$;
@@ -20,7 +25,7 @@ export class HomeComponent implements OnInit {
     { id: 1, name: 'Fiction', icon: 'fas fa-book', bookCount: 150 },
     { id: 2, name: 'Technology', icon: 'fas fa-laptop-code', bookCount: 85 },
     { id: 3, name: 'Business', icon: 'fas fa-chart-line', bookCount: 120 },
-    { id: 4, name: 'Arts', icon: 'fas fa-palette', bookCount: 95 }
+    { id: 4, name: 'Arts', icon: 'fas fa-palette', bookCount: 95 },
   ];
 
   constructor(
@@ -42,10 +47,10 @@ export class HomeComponent implements OnInit {
 
   addToCart(book: Book): void {
     this.cartService.addToCart({
-      id: book.id,
+      id: book._id,
       title: book.title,
       price: book.price,
-      quantity: 1
+      quantity: 1,
     });
   }
 }

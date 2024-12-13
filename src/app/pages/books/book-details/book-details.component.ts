@@ -27,7 +27,7 @@ export class BookDetailsComponent {
 
   addToCart(book: any): void {
     this.cartService.addToCart({
-      id: book.id,
+      id: book._id,
       title: book.title,
       price: book.price,
       quantity: 1,

@@ -1,8 +1,11 @@
 <div class="card h-100 book-card">
   <div class="book-image-container">
-    <img [src]="book.coverImage" class="card-img-top" [alt]="book.title">
+    <img [src]="book.coverImage" class="card-img-top" [alt]="book.title" />
     <div class="book-overlay">
-      <button class="btn btn-light btn-sm me-2" [routerLink]="['/books', book.id]">
+      <button
+        class="btn btn-light btn-sm me-2"
+        [routerLink]="['/books', book._id]"
+      >
         <i class="fas fa-eye"></i> View
       </button>
       <button class="btn btn-primary btn-sm" (click)="onAddToCart.emit(book)">
