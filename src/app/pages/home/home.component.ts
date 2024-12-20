@@ -88,10 +88,11 @@ export class HomeComponent implements OnInit {
   }
 
   addToCart(book: Book): void {
-    this.cartService.addToCart({
-      id: book._id,
-      title: book.title,
-      price: book.price,
+    let userId = (localStorage.getItem('user') as any).id;
+
+    this.cartService.updateCart({
+      userId: userId,
+      bookId: book._id,
       quantity: 1,
     });
   }

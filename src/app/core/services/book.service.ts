@@ -8,8 +8,6 @@ import { baseUrl } from '../../shared/const';
   providedIn: 'root',
 })
 export class BookService {
-  private books: Book[] = [];
-
   constructor(private httpClient: HttpClient) {}
 
   getBooks() {

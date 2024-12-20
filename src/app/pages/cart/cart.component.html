@@ -5,69 +5,86 @@
         <div class="card-body p-4">
           <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="card-title mb-0">
-              <i class="fas fa-shopping-cart text-primary me-2"></i>Shopping Cart
+              <i class="fas fa-shopping-cart text-primary me-2"></i>Shopping
+              Cart
             </h3>
             <span class="badge bg-primary">{{ cartItems.length }} Items</span>
           </div>
-          
+
           @if (cartItems.length > 0) {
-            <div class="table-responsive">
-              <table class="table align-middle">
-                <thead>
-                  <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @for (item of cartItems; track item.id) {
-                    <tr class="animate-fade-in">
-                      <td>
-                        <div class="d-flex align-items-center">
-                          <img [src]="'assets/book-' + item.id + '.jpg'" class="cart-item-image rounded-custom me-3">
-                          <div>
-                            <h6 class="mb-0">{{ item.title }}</h6>
-                            <small class="text-muted">#{{ item.id }}</small>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="text-primary fw-semibold">\${{ item.price }}</td>
-                      <td>
-                        <div class="quantity-control">
-                          <button class="btn btn-sm btn-outline-primary rounded-circle">
-                            <i class="fas fa-minus"></i>
-                          </button>
-                          <input type="number" class="form-control text-center" [value]="item.quantity" min="1">
-                          <button class="btn btn-sm btn-outline-primary rounded-circle">
-                            <i class="fas fa-plus"></i>
-                          </button>
-                        </div>
-                      </td>
-                      <td class="fw-semibold">\${{ item.price * item.quantity }}</td>
-                      <td>
-                        <button class="btn btn-link text-danger">
-                          <i class="fas fa-trash-alt"></i>
-                        </button>
-                      </td>
-                    </tr>
-                  }
-                </tbody>
-              </table>
-            </div>
+          <div class="table-responsive">
+            <table class="table align-middle">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Total</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <!-- <tbody>
+                @for (item of cartItems; track item.id) {
+                <tr class="animate-fade-in">
+                  <td>
+                    <div class="d-flex align-items-center">
+                      <img
+                        [src]="'assets/book-' + item.id + '.jpg'"
+                        class="cart-item-image rounded-custom me-3"
+                      />
+                      <div>
+                        <h6 class="mb-0">{{ item.title }}</h6>
+                        <small class="text-muted">#{{ item.id }}</small>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-primary fw-semibold">\${{ item.price }}</td>
+                  <td>
+                    <div class="quantity-control">
+                      <button
+                        class="btn btn-sm btn-outline-primary rounded-circle"
+                      >
+                        <i class="fas fa-minus"></i>
+                      </button>
+                      <input
+                        type="number"
+                        class="form-control text-center"
+                        [value]="item.quantity"
+                        min="1"
+                      />
+                      <button
+                        class="btn btn-sm btn-outline-primary rounded-circle"
+                      >
+                        <i class="fas fa-plus"></i>
+                      </button>
+                    </div>
+                  </td>
+                  <td class="fw-semibold">
+                    \${{ item.price * item.quantity }}
+                  </td>
+                  <td>
+                    <button class="btn btn-link text-danger">
+                      <i class="fas fa-trash-alt"></i>
+                    </button>
+                  </td>
+                </tr>
+                }
+              </tbody> -->
+            </table>
+          </div>
           } @else {
-            <div class="text-center py-5">
-              <div class="mb-4">
-                <i class="fas fa-shopping-cart text-muted display-1"></i>
-              </div>
-              <h5 class="mb-3">Your cart is empty</h5>
-              <p class="text-muted mb-4">Browse our collection and add some books!</p>
-              <a routerLink="/" class="btn btn-primary px-4 py-2">
-                <i class="fas fa-books me-2"></i>Continue Shopping
-              </a>
+          <div class="text-center py-5">
+            <div class="mb-4">
+              <i class="fas fa-shopping-cart text-muted display-1"></i>
             </div>
+            <h5 class="mb-3">Your cart is empty</h5>
+            <p class="text-muted mb-4">
+              Browse our collection and add some books!
+            </p>
+            <a routerLink="/" class="btn btn-primary px-4 py-2">
+              <i class="fas fa-books me-2"></i>Continue Shopping
+            </a>
+          </div>
           }
         </div>
       </div>
@@ -79,19 +96,21 @@
           <h5 class="card-title mb-4">
             <i class="fas fa-receipt text-primary me-2"></i>Order Summary
           </h5>
-          
+
           <div class="d-flex justify-content-between mb-3">
             <span class="text-muted">Subtotal</span>
-            <span class="fw-semibold">\${{ calculateTotal() }}</span>
+            <!-- <span class="fw-semibold">\${{ calculateTotal() || 0 }}</span> -->
           </div>
           <div class="d-flex justify-content-between mb-3">
             <span class="text-muted">Shipping</span>
             <span class="text-success">Free</span>
           </div>
-          <hr class="my-4">
+          <hr class="my-4" />
           <div class="d-flex justify-content-between mb-4">
             <span class="fw-bold">Total</span>
-            <span class="fw-bold text-primary">\${{ calculateTotal() }}</span>
+            <!-- <span class="fw-bold text-primary"
+              >\${{ calculateTotal() || 0 }}</span -->
+            >
           </div>
 
           <button class="btn btn-primary w-100 py-3 mb-3">
@@ -112,7 +131,7 @@
             <i class="fas fa-tag text-primary me-2"></i>Have a coupon?
           </h6>
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Enter code">
+            <input type="text" class="form-control" placeholder="Enter code" />
             <button class="btn btn-primary px-4">Apply</button>
           </div>
         </div>

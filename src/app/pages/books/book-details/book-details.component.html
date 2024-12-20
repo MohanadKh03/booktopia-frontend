@@ -1,100 +1,111 @@
 <div class="container py-5">
-  @if (book$ | async; as book) {
-  <div class="row g-4">
-    <div class="col-md-4">
-      <div class="card border-0 shadow-custom">
-        <div class="book-image-container">
-          <img
-            [src]="book.coverImage"
-            class="img-fluid rounded-top"
-            [alt]="book.title"
-          />
-          <div class="book-overlay">
-            <button class="btn btn-light btn-lg">
-              <i class="fas fa-expand"></i>
-            </button>
-          </div>
-        </div>
-        <div class="card-body p-4">
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <span class="badge bg-primary">{{ book.category.name }}</span>
-            <div class="rating">
-              <i class="fas fa-star text-warning"></i>
-              <span class="ms-1">4.5</span>
+  <div *ngIf="book">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card border-0 shadow-custom">
+          <div class="book-image-container">
+            <img
+              [src]="book.coverImage"
+              class="img-fluid rounded-top"
+              [alt]="book.title"
+            />
+            <div class="book-overlay">
+              <button class="btn btn-light btn-lg">
+                <i class="fas fa-expand"></i>
+              </button>
             </div>
           </div>
-          <h4 class="card-title mb-2">{{ book.title }}</h4>
-          <p class="text-muted mb-3">by {{ book.author }}</p>
-          <div class="d-flex justify-content-between align-items-center">
-            <h3 class="text-primary mb-0">\${{ book.price }}</h3>
-            <span class="badge bg-success">In Stock</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-8">
-      <div class="card border-0 shadow-custom mb-4">
-        <div class="card-body p-4">
-          <h4 class="card-title mb-4">About this book</h4>
-
-          <div class="row g-4 mb-4">
-            <div class="col-sm-6 col-lg-3">
-              <div class="p-3 bg-light rounded-custom text-center">
-                <i class="fas fa-book text-primary mb-2"></i>
-                <h6 class="mb-1">Pages</h6>
-                <p class="mb-0">324</p>
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="badge bg-primary">{{ book.category.name }}</span>
+              <div class="rating">
+                <i class="fas fa-star text-warning"></i>
+                <span class="ms-1">4.5</span>
               </div>
             </div>
-            <div class="col-sm-6 col-lg-3">
-              <div class="p-3 bg-light rounded-custom text-center">
-                <i class="fas fa-language text-primary mb-2"></i>
-                <h6 class="mb-1">Language</h6>
-                <p class="mb-0">English</p>
-              </div>
+            <h4 class="card-title mb-2">{{ book.title }}</h4>
+            <p class="text-muted mb-3">by {{ book.author }}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <h3 class="text-primary mb-0">\${{ book.price }}</h3>
+              <span class="badge bg-success">In Stock</span>
             </div>
-            <div class="col-sm-6 col-lg-3">
-              <div class="p-3 bg-light rounded-custom text-center">
-                <i class="fas fa-calendar text-primary mb-2"></i>
-                <h6 class="mb-1">Published</h6>
-                <p class="mb-0">2024</p>
-              </div>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-              <div class="p-3 bg-light rounded-custom text-center">
-                <i class="fas fa-box text-primary mb-2"></i>
-                <h6 class="mb-1">Stock</h6>
-                <p class="mb-0">{{ book.stock }} units</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="d-grid gap-2 d-md-flex">
-            <button
-              class="btn btn-primary btn-lg flex-grow-1"
-              (click)="addToCart(book)"
-            >
-              <i class="fas fa-cart-plus me-2"></i>Add to Cart
-            </button>
           </div>
         </div>
       </div>
 
-      <div class="card border-0 shadow-custom">
-        <div class="card-body p-4">
-          <h4 class="card-title mb-4">Customer Reviews</h4>
-          <!-- Add reviews component here -->
-          <div class="text-center py-4">
-            <p class="text-muted mb-4">
-              No reviews yet. Be the first to review this book!
-            </p>
-            <button class="btn btn-outline-primary">
-              <i class="fas fa-star me-2"></i>Write a Review
-            </button>
+      <div class="col-md-8">
+        <div class="card border-0 shadow-custom mb-4">
+          <div class="card-body p-4">
+            <h4 class="card-title mb-4">About this book</h4>
+
+            <div class="row g-4 mb-4">
+              <div class="col-sm-6 col-lg-3">
+                <div class="p-3 bg-light rounded-custom text-center">
+                  <i class="fas fa-book text-primary mb-2"></i>
+                  <h6 class="mb-1">Pages</h6>
+                  <p class="mb-0">324</p>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <div class="p-3 bg-light rounded-custom text-center">
+                  <i class="fas fa-language text-primary mb-2"></i>
+                  <h6 class="mb-1">Language</h6>
+                  <p class="mb-0">English</p>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <div class="p-3 bg-light rounded-custom text-center">
+                  <i class="fas fa-calendar text-primary mb-2"></i>
+                  <h6 class="mb-1">Published</h6>
+                  <p class="mb-0">2024</p>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <div class="p-3 bg-light rounded-custom text-center">
+                  <i class="fas fa-box text-primary mb-2"></i>
+                  <h6 class="mb-1">Stock</h6>
+                  <p class="mb-0">{{ book.stock }} units</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-grid gap-2 d-md-flex">
+              <button
+                class="btn btn-primary btn-lg flex-grow-1"
+                (click)="addToCart(book)"
+              >
+                <i class="fas fa-cart-plus me-2"></i>Add to Cart
+              </button>
+            </div>
+            <div class="d-flex align-items-center mt-3">
+              <label for="quantity" class="me-2">Quantity:</label>
+              <input
+                type="number"
+                id="quantity"
+                min="1"
+                max="{{ book.stock }}"
+                class="form-control"
+                style="width: 80px"
+                [(ngModel)]="quantity"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="card border-0 shadow-custom">
+          <div class="card-body p-4">
+            <h4 class="card-title mb-4">Customer Reviews</h4>
+            <div class="text-center py-4">
+              <p class="text-muted mb-4">
+                No reviews yet. Be the first to review this book!
+              </p>
+              <button class="btn btn-outline-primary">
+                <i class="fas fa-star me-2"></i>Write a Review
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  }
 </div>

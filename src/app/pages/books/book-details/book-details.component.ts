@@ -1,36 +1,47 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { AsyncPipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { BookService } from '../../../core/services/book.service';
 import { CartService } from '../../../core/services/cart.service';
 import { filter, Observable } from 'rxjs';
 import { Book } from '../../../core/models/book.interface';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-book-details',
   standalone: true,
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, CommonModule, FormsModule, RouterModule],
   templateUrl: './book-details.component.html',
 })
-export class BookDetailsComponent {
-  book$: Observable<Book>;
+export class BookDetailsComponent implements OnInit {
+  book?: Book;
+  quantity: number = 0;
 
   constructor(
     private route: ActivatedRoute,
     private bookService: BookService,
-    private cartService: CartService
-  ) {
-    this.book$ = this.bookService
+    private cartService: CartService,
+    private router: Router
+  ) {}
+  ngOnInit(): void {
+    this.bookService
       .getBook(String(this.route.snapshot.paramMap.get('id')))
-      .pipe(filter((book): book is Book => book !== undefined));
+      .subscribe((response: any) => {
+        if (response.data) {
+          this.book = response.data;
+        }
+      });
   }
 
   addToCart(book: any): void {
-    this.cartService.addToCart({
-      id: book._id,
-      title: book.title,
-      price: book.price,
-      quantity: 1,
+    let user = JSON.parse(localStorage.getItem('user') as any);
+    let userId = user ? user.id : null;
+
+    this.cartService.updateCart({
+      userId: userId,
+      bookId: book._id,
+      quantity: this.quantity,
     });
+    this.router.navigate(['/cart']);
   }
 }

@@ -1,6 +1,5 @@
-export interface CartItem {
-  id: string;
-  title: string;
-  price: number;
+export interface UpdateCartItem {
+  userId: string;
+  bookId: string;
   quantity: number;
 }
