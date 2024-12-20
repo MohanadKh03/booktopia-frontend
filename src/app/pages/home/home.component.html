@@ -40,24 +40,14 @@
     </div>
   </div>
 
-  <!-- Featured Categories -->
   <div class="container mb-5">
     <h2 class="section-title">Featured Categories</h2>
     <div class="row g-4">
-      @for (category of categories; track category.id) {
-      <div class="col-md-3">
+      <div *ngFor="let category of categories" class="col-md-3">
         <div class="category-card text-center p-4 rounded-custom shadow-custom">
-          <div class="icon-wrapper mb-3">
-            <i [class]="category.icon + ' text-primary fa-3x'"></i>
-          </div>
           <h5 class="mb-2">{{ category.name }}</h5>
-          <p class="text-muted mb-3">{{ category.bookCount }} Books</p>
-          <button class="btn btn-outline-primary btn-sm">
-            Explore Category
-          </button>
         </div>
       </div>
-      }
     </div>
   </div>
 
@@ -73,19 +63,24 @@
         >
           <i class="fas fa-sort me-2"></i>Sort by
         </button>
+
         <ul class="dropdown-menu">
-          <li>
-            <a class="dropdown-item" href="#"
+          <!-- <li>
+            <a class="dropdown-item" href="#" (click)="sortBooks('popularity')"
               ><i class="fas fa-fire me-2"></i>Popularity</a
             >
-          </li>
+          </li> -->
           <li>
-            <a class="dropdown-item" href="#"
+            <a
+              class="dropdown-item"
+              (click)="sortBooks('priceLowToHigh')"
               ><i class="fas fa-arrow-up me-2"></i>Price: Low to High</a
             >
           </li>
           <li>
-            <a class="dropdown-item" href="#"
+            <a
+              class="dropdown-item"
+              (click)="sortBooks('priceHighToLow')"
               ><i class="fas fa-arrow-down me-2"></i>Price: High to Low</a
             >
           </li>
@@ -94,15 +89,15 @@
     </div>
 
     <div class="row g-4">
-      @for (book of books$ | async; track book._id) {
-      <div class="col-md-3">
-        <app-book-card [book]="book" (onAddToCart)="addToCart($event)">
-        </app-book-card>
+      <div *ngFor="let book of shownBooks" class="col-md-3">
+        <app-book-card
+          [book]="book"
+          (onAddToCart)="addToCart($event)"
+        ></app-book-card>
       </div>
-      }
     </div>
-  </div>
 
-  <!-- Newsletter Section -->
-  <app-newsletter-section></app-newsletter-section>
+    <!-- Newsletter Section -->
+    <app-newsletter-section></app-newsletter-section>
+  </div>
 </div>
