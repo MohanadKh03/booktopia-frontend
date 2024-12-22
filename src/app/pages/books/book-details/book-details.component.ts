@@ -6,6 +6,8 @@ import { CartService } from '../../../core/services/cart.service';
 import { filter, Observable } from 'rxjs';
 import { Book } from '../../../core/models/book.interface';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../../core/services/auth.service';
+import { User } from '../../../core/models/user.interface';
 
 @Component({
   selector: 'app-book-details',
@@ -16,12 +18,13 @@ import { FormsModule } from '@angular/forms';
 export class BookDetailsComponent implements OnInit {
   book?: Book;
   quantity: number = 0;
-
+  user: User | undefined;
   constructor(
     private route: ActivatedRoute,
     private bookService: BookService,
     private cartService: CartService,
-    private router: Router
+    private router: Router,
+    private auth: AuthService
   ) {}
   ngOnInit(): void {
     this.bookService
@@ -31,17 +34,34 @@ export class BookDetailsComponent implements OnInit {
           this.book = response.data;
         }
       });
+
+    this.auth.getUser().subscribe((user) => {
+      this.user = user ?? undefined;
+    });
   }
 
   addToCart(book: any): void {
-    let user = JSON.parse(localStorage.getItem('user') as any);
-    let userId = user ? user.id : null;
+    if (!this.user) {
+      alert('Please login to add to cart');
+      return;
+    }
 
-    this.cartService.updateCart({
-      userId: userId,
-      bookId: book._id,
-      quantity: this.quantity,
-    });
-    this.router.navigate(['/cart']);
+    this.cartService
+      .updateCart({
+        userId: this.user.id,
+        bookId: book._id,
+        quantity: this.quantity,
+      })
+      .subscribe(
+        (response: any) => {
+          if (response.data) {
+            alert('Added to cart');
+          }
+        },
+        (error) => {
+          console.error('Failed to add to cart:', error);
+          alert('already in cart');
+        }
+      );
   }
 }

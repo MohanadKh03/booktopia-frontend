@@ -8,10 +8,10 @@
               <i class="fas fa-shopping-cart text-primary me-2"></i>Shopping
               Cart
             </h3>
-            <span class="badge bg-primary">{{ cartItems.length }} Items</span>
+            <span class="badge bg-primary">{{ items.length }} Items</span>
           </div>
 
-          @if (cartItems.length > 0) {
+          @if (items.length > 0) {
           <div class="table-responsive">
             <table class="table align-middle">
               <thead>
@@ -23,54 +23,42 @@
                   <th></th>
                 </tr>
               </thead>
-              <!-- <tbody>
-                @for (item of cartItems; track item.id) {
+              <tbody>
+                @for (item of items; track item.Book._id) {
                 <tr class="animate-fade-in">
                   <td>
                     <div class="d-flex align-items-center">
-                      <img
-                        [src]="'assets/book-' + item.id + '.jpg'"
-                        class="cart-item-image rounded-custom me-3"
-                      />
+                      <img class="cart-item-image rounded-custom me-3"
+                        src="https://img.freepik.com/premium-photo/blue-color-covered-book-blue-background_1048944-1453406.jpg" />
                       <div>
-                        <h6 class="mb-0">{{ item.title }}</h6>
-                        <small class="text-muted">#{{ item.id }}</small>
+                        <h6 class="mb-0">{{ item.Book.title }}</h6>
+                        <small class="text-muted">#{{ item.Book.author}}</small>
                       </div>
                     </div>
                   </td>
-                  <td class="text-primary fw-semibold">\${{ item.price }}</td>
+                  <td class="text-primary fw-semibold">${{ item.Book.price }}</td>
                   <td>
                     <div class="quantity-control">
-                      <button
-                        class="btn btn-sm btn-outline-primary rounded-circle"
-                      >
-                        <i class="fas fa-minus"></i>
-                      </button>
-                      <input
-                        type="number"
-                        class="form-control text-center"
-                        [value]="item.quantity"
-                        min="1"
-                      />
-                      <button
-                        class="btn btn-sm btn-outline-primary rounded-circle"
-                      >
-                        <i class="fas fa-plus"></i>
-                      </button>
+
+                      <input #quantityInput type="number" class="form-control text-center" [value]="item.quantity"
+                        (change)="onQuantityChange(item, quantityInput.value)" min="1" />
+
                     </div>
                   </td>
                   <td class="fw-semibold">
-                    \${{ item.price * item.quantity }}
+                    ${{ item.Book.price * item.quantity }}
                   </td>
                   <td>
-                    <button class="btn btn-link text-danger">
+                    <button class="btn btn-link text-danger" (click)="removeItem(item.Book)">
                       <i class="fas fa-trash-alt"></i>
                     </button>
                   </td>
+
                 </tr>
                 }
-              </tbody> -->
+              </tbody>
             </table>
+
           </div>
           } @else {
           <div class="text-center py-5">
@@ -98,19 +86,13 @@
           </h5>
 
           <div class="d-flex justify-content-between mb-3">
-            <span class="text-muted">Subtotal</span>
-            <!-- <span class="fw-semibold">\${{ calculateTotal() || 0 }}</span> -->
-          </div>
-          <div class="d-flex justify-content-between mb-3">
             <span class="text-muted">Shipping</span>
             <span class="text-success">Free</span>
           </div>
           <hr class="my-4" />
           <div class="d-flex justify-content-between mb-4">
             <span class="fw-bold">Total</span>
-            <!-- <span class="fw-bold text-primary"
-              >\${{ calculateTotal() || 0 }}</span -->
-            >
+            <span class="fw-bold text-primary">${{ total || 0 }}</span>
           </div>
 
           <button class="btn btn-primary w-100 py-3 mb-3">
