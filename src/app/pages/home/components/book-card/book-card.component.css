@@ -14,7 +14,7 @@
 
 .book-image-container img {
   height: 250px;
-  object-fit: cover;
+  object-fit: fill;
   transition: transform 0.3s ease;
 }
 
