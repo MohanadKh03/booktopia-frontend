@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-admin-books',
   templateUrl: './admin-books.component.html',
+  styleUrls: ['./admin-books.component.css'],
   imports: [CommonModule, FormsModule],
   standalone: true,
 })

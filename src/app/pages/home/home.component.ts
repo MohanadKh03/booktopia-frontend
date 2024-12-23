@@ -1,17 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { AsyncPipe, CommonModule, NgFor } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { BookCardComponent } from './components/book-card/book-card.component';
 import { SearchFilterComponent } from './components/search-filter/search-filter.component';
 import { BookService } from '../../core/services/book.service';
 import { CartService } from '../../core/services/cart.service';
 import { Book } from '../../core/models/book.interface';
-import { NewsletterSectionComponent } from '../../shared/components/newsletter-section/newsletter-section.component';
+import { NewsletterSectionComponent } from './components/newsletter-section/newsletter-section.component';
 import { Category } from '../../core/models/category.interface';
-import { HttpClient } from '@angular/common/http';
-import { baseUrl } from '../../shared/const';
 import { CategoryService } from '../../core/services/category.service';
 import { FormsModule } from '@angular/forms';
-import { ApiResponse } from '../../shared/api.response';
 import {
   PriceHighToLowSortingStrategy,
   PriceLowToHighSortingStrategy,
@@ -22,7 +19,6 @@ import {
   selector: 'app-home',
   standalone: true,
   imports: [
-    AsyncPipe,
     CommonModule,
     FormsModule,
     BookCardComponent,
