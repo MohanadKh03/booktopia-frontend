@@ -23,6 +23,11 @@ export class BookService {
     return this.httpClient.post<any>(`${baseUrl}/book`, book);
   }
 
+  addReview(userId: string, bookId: string, review: string) {
+    const url = `${baseUrl}/order/review/${userId}/${bookId}`;
+    return this.httpClient.post<any>(url, { review: review });
+  }
+
   updateBook(book: Book) {
     const url = `${baseUrl}/book/${book._id}`;
     return this.httpClient.put<any>(url, book);

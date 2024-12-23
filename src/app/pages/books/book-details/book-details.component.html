@@ -5,9 +5,14 @@
         <div class="card border-0 shadow-custom">
           <div class="book-image-container">
             <img
-              [src]="book.coverImage || 'https://img.freepik.com/premium-photo/blue-color-covered-book-blue-background_1048944-1453406.jpg'"
-              class="img-fluid rounded-top" style="height: 25rem; width: 100%; object-fit: fill;"
-              [alt]="book.title" />
+              [src]="
+                book.coverImage ||
+                'https://img.freepik.com/premium-photo/blue-color-covered-book-blue-background_1048944-1453406.jpg'
+              "
+              class="img-fluid rounded-top"
+              style="height: 25rem; width: 100%; object-fit: fill"
+              [alt]="book.title"
+            />
             <div class="book-overlay">
               <button class="btn btn-light btn-lg">
                 <i class="fas fa-expand"></i>
@@ -69,28 +74,70 @@
             </div>
 
             <div class="d-grid gap-2 d-md-flex">
-              <button class="btn btn-primary btn-lg flex-grow-1" (click)="addToCart(book)">
+              <button
+                class="btn btn-primary btn-lg flex-grow-1"
+                (click)="addToCart(book)"
+              >
                 <i class="fas fa-cart-plus me-2"></i>Add to Cart
               </button>
             </div>
             <div class="d-flex align-items-center mt-3">
               <label for="quantity" class="me-2">Quantity:</label>
-              <input type="number" id="quantity" min="1" max="{{ book.stock }}" class="form-control" style="width: 80px"
-                [(ngModel)]="quantity" />
+              <input
+                type="number"
+                id="quantity"
+                min="1"
+                max="{{ book.stock }}"
+                class="form-control"
+                style="width: 80px"
+                [(ngModel)]="quantity"
+              />
             </div>
           </div>
         </div>
 
         <div class="card border-0 shadow-custom">
           <div class="card-body p-4">
-            <h4 class="card-title mb-4">Customer Reviews</h4>
-            <div class="text-center py-4">
-              <p class="text-muted mb-4">
-                No reviews yet. Be the first to review this book!
-              </p>
-              <button class="btn btn-outline-primary">
-                <i class="fas fa-star me-2"></i>Write a Review
-              </button>
+            <!-- Write a Review Section -->
+            <div class="mb-4">
+              <textarea
+                class="form-control"
+                [(ngModel)]="review"
+                placeholder="Write your review here..."
+                rows="3"
+              ></textarea>
+              <div class="text-end mt-2">
+                <button class="btn btn-primary" (click)="addReview()">
+                  <i class="fas fa-pen me-2"></i>Submit Review
+                </button>
+              </div>
+            </div>
+            <!-- Customer Reviews Title -->
+            <h4 class="card-title mb-4 text-center">Customer Reviews</h4>
+            <div class="reviews-section">
+              <!-- Display Reviews -->
+              <div *ngFor="let review of book.reviews" class="review-item mb-4">
+                <div class="d-flex">
+                  <i class="fas fa-user-circle fa-3x text-secondary me-3"></i>
+                  <div class="review-content flex-grow-1">
+                    <div class="d-flex justify-content-between">
+                      <h6 class="mb-1 text-primary">
+                        {{ review.userId.name }}
+                      </h6>
+                    </div>
+                    <p class="mt-2 text-muted">{{ review.review }}</p>
+                  </div>
+                </div>
+                <hr class="text-muted" />
+              </div>
+              <!-- No Comments Message -->
+              <div
+                *ngIf="!book.reviews?.length"
+                class="text-center text-muted py-4"
+              >
+                <i class="fas fa-comment-slash fa-2x mb-2"></i>
+                <p>No comments yet. Be the first to leave a review!</p>
+              </div>
             </div>
           </div>
         </div>

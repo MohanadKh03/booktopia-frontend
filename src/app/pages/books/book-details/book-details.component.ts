@@ -19,11 +19,11 @@ export class BookDetailsComponent implements OnInit {
   book?: Book;
   quantity: number = 0;
   user: User | undefined;
+  review: string = '';
   constructor(
     private route: ActivatedRoute,
     private bookService: BookService,
     private cartService: CartService,
-    private router: Router,
     private auth: AuthService
   ) {}
   ngOnInit(): void {
@@ -38,6 +38,41 @@ export class BookDetailsComponent implements OnInit {
     this.auth.getUser().subscribe((user) => {
       this.user = user ?? undefined;
     });
+  }
+
+  addReview(): void {
+    if (!this.user) {
+      alert('Please login to add review');
+      return;
+    }
+    if (!this.review) {
+      alert('Please enter a review');
+      return;
+    }
+    if (!this.book) {
+      alert('Book not found');
+      return;
+    }
+    this.bookService
+      .addReview(this.user.id, this.book._id, this.review)
+      .subscribe(
+        (response: any) => {
+          if (response.data) {
+            alert('Review added successfully');
+            if (this.user?.id && this.user?.username) {
+              this.book?.reviews?.push({
+                userId: { _id: this.user.id, name: this.user.username },
+                review: response.data,
+              });
+            }
+          }
+        },
+        (error) => {
+          console.error('Failed to add review:', error);
+          alert('Failed to add review');
+        }
+      );
+    this.review = '';
   }
 
   addToCart(book: any): void {

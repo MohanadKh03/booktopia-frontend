@@ -1,33 +1,43 @@
 <div class="container mt-4">
-    <h2>Order History</h2>
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Order ID</th>
-                    <th>Date</th>
-                    <th>Total</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (order of orders; track order.id) {
-                <tr>
-                    <td>#{{ order.id }}</td>
-                    <td>{{ order.date }}</td>
-                    <td>\${{ order.total }}</td>
-                    <td>
-                        <span class="badge" [class]="'bg-' + order.statusColor">
-                            {{ order.status }}
-                        </span>
-                    </td>
-                    <td>
-                        <button class="btn btn-sm btn-primary">View Details</button>
-                    </td>
-                </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+  <h2>Order History</h2>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Date</th>
+          <th>Total</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (order of orders; track order._id) {
+        <tr>
+          <td>{{ order._id }}</td>
+          <td>{{ order.date | date : "dd/MM/yyyy" }}</td>
+          <td>${{ order.totalPrice }}</td>
+          <td>
+            <span
+              class="badge"
+              [ngClass]="{
+                'bg-warning': order.status === 'Pending',
+                'bg-success': order.status === 'Confirmed',
+                'bg-danger': order.status === 'Cancelled',
+                'bg-primary': order.status === 'Shipped'
+              }"
+            >
+              {{ order.status }}
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-primary">
+              View Details (TODO NEXT)
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
 </div>

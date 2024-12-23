@@ -9,4 +9,11 @@ export interface Book {
     name: string;
   };
   stock: number;
+  reviews?: {
+    userId: {
+      _id: string;
+      name: string;
+    };
+    review: string;
+  }[];
 }
