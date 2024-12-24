@@ -12,12 +12,13 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   isLoggedIn = false;
-
+  user: any;
   constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
     this.authService.getUser().subscribe((user) => {
       if (user) {
+        this.user = user;
         this.isLoggedIn = true;
       } else {
         this.isLoggedIn = false;

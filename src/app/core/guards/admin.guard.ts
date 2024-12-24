@@ -3,16 +3,22 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AdminGuard {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(): boolean {
-    if (this.authService.isAdmin()) {
+    let isAdmin = false;
+    this.authService.getUser().subscribe((user) => {
+      if (user && user.role === 'admin') {
+        isAdmin = true;
+      }
+    });
+    if (isAdmin) {
       return true;
     }
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
     return false;
   }
 }
