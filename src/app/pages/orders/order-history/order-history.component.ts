@@ -26,6 +26,7 @@ export class OrderHistoryComponent implements OnInit {
     this.orderService.getOrder(this.user.id).subscribe((response: any) => {
       if (response.data) {
         this.orders = response.data;
+        console.log(response.data);
       }
     });
   }

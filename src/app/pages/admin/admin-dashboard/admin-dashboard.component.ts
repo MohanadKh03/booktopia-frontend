@@ -42,8 +42,7 @@ export class AdminDashboardComponent implements OnInit {
 
   calculateTotalPrice(): void {
     this.totalPrice = this.topSellingBooks.reduce((acc: number, book: any) => {
-      return acc + (book.price * book.sold);  
+      return acc + book.price * book.sold;
     }, 0);
-    console.log('Total Price: $' + this.totalPrice);
   }
 }
