@@ -36,7 +36,6 @@ export class ProfileComponent implements OnInit {
     this.http
       .put(`${baseUrl}/user/${this.existingUser.id}`, {
         name: this.name,
-        email: this.email,
         phone: this.phone,
       })
       .subscribe((response: Object | null) => {
@@ -45,7 +44,6 @@ export class ProfileComponent implements OnInit {
           const updatedUser = {
             ...this.existingUser,
             username: this.name,
-            email: this.email,
             phone: this.phone,
           };
           this.authService.setUser(updatedUser);
@@ -58,7 +56,6 @@ export class ProfileComponent implements OnInit {
 
   resetForm() {
     this.name = this.existingUser.username;
-    this.email = this.existingUser.email;
     this.phone = this.existingUser.phone || '';
   }
 }

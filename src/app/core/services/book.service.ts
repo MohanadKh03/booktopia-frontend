@@ -19,6 +19,16 @@ export class BookService {
     return this.httpClient.get<any>(url);
   }
 
+  subscribeToBookAlerts(email: string) {
+    const url = `${baseUrl}/book/subscribe`;
+    return this.httpClient.post<any>(url, { email: email });
+  }
+
+  unsubscribeToBookAlerts(email: string) {
+    const url = `${baseUrl}/book/unsubscribe`;
+    return this.httpClient.post<any>(url, { email: email });
+  }
+
   addBook(book: Book) {
     return this.httpClient.post<any>(`${baseUrl}/book`, book);
   }

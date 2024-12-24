@@ -6,6 +6,7 @@ export interface User {
   address?: string;
   phone?: string;
   token?: string;
+  isSubscribed: boolean;
 }
 
 export interface UserStats {

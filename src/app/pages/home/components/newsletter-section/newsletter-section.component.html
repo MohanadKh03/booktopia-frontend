@@ -5,34 +5,16 @@
         <i class="fas fa-envelope-open-text"></i>
       </div>
       <h3 class="mb-3">Stay Updated with Booktopia</h3>
-      <p class="text-muted mb-4">Get notified about new releases, exclusive offers, and reading recommendations!</p>
-      
-      @if (!subscribed) {
-        <form [formGroup]="newsletterForm" (ngSubmit)="onSubmit()" class="newsletter-form">
-          <div class="input-group">
-            <input 
-              type="email" 
-              class="form-control" 
-              placeholder="Enter your email"
-              formControlName="email"
-              [class.is-invalid]="newsletterForm.get('email')?.invalid && newsletterForm.get('email')?.touched">
-            <button 
-              class="btn btn-primary" 
-              type="submit"
-              [disabled]="newsletterForm.invalid">
-              Subscribe
-            </button>
-          </div>
-          @if (newsletterForm.get('email')?.invalid && newsletterForm.get('email')?.touched) {
-            <small class="text-danger">Please enter a valid email address</small>
-          }
-        </form>
-      } @else {
-        <div class="alert alert-success animate-success">
-          <i class="fas fa-check-circle me-2"></i>
-          Thank you for subscribing!
+      <p class="text-muted mb-4">Get notified about new added books!</p>
+
+      <div>
+        <div class="input-group">
+          <input readonly class="form-control" [value]="user?.email || ''" />
+          <button class="btn btn-primary" (click)="toggleSubscription()">
+            {{ user?.isSubscribed ? "Unsubscribe" : "Subscribe" }}
+          </button>
         </div>
-      }
+      </div>
     </div>
   </div>
 </div>
