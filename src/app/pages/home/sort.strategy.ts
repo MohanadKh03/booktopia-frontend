@@ -4,11 +4,11 @@ export interface SortingStrategy {
   sort(books: Book[]): Book[];
 }
 
-// export class PopularitySortingStrategy implements SortingStrategy {
-//   sort(books: Book[]): Book[] {
-//     return books.sort((a, b) => b.popularity - a.popularity);
-//   }
-// }
+export class ReviewSortingStrategy implements SortingStrategy {
+  sort(books: Book[]): Book[] {
+    return books.sort((a, b) => (b.reviews?.length || 0) - (a.reviews?.length || 0));
+  }
+}
 
 export class TitleSortingStrategy implements SortingStrategy {
   sort(books: Book[]): Book[] {

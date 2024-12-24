@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import {
   PriceHighToLowSortingStrategy,
   PriceLowToHighSortingStrategy,
+  ReviewSortingStrategy,
   SortingStrategy,
 } from './sort.strategy';
 
@@ -68,6 +69,10 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  handleReviewSort(): void {
+    this.shownBooks = new ReviewSortingStrategy().sort([...this.shownBooks]);
+  }
+
   sortBooks(option: string): void {
     let sortingStrategy: SortingStrategy;
     switch (option) {
@@ -77,10 +82,13 @@ export class HomeComponent implements OnInit {
       case 'priceHighToLow':
         sortingStrategy = new PriceHighToLowSortingStrategy();
         break;
+      case 'reviews':
+        sortingStrategy = new ReviewSortingStrategy();
+        break;
       default:
         return;
     }
-    this.shownBooks = sortingStrategy.sort([...this.books]);
+    this.shownBooks = sortingStrategy.sort([...this.shownBooks]);
   }
 
   addToCart(book: Book): void {
