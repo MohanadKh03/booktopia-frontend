@@ -31,13 +31,33 @@
             </span>
           </td>
           <td>
-            <button class="btn btn-sm btn-primary">
-              View Details (TODO NEXT)
+            <button class="btn btn-sm btn-primary" (click)="showDetails(order._id)">
+              View Details
             </button>
           </td>
         </tr>
         }
       </tbody>
     </table>
+
+    <div *ngIf="toggleDetails" class="modal-overlay">
+      <div class="modal-container">
+        <button class="close-button" (click)="toggleDetails = false">×</button>
+        <div class="order-items">
+          <h3>Order Details</h3>
+          <ul>
+            <li *ngFor="let item of orderDetails.items" class="order-item">
+              <div class="item-info p-3">
+                <p class="item-title fs-4 fw-semibold text-primary">{{ item.bookId.title }}</p>
+                <p class="item-details fs-6">Author: {{ item.bookId.author }}</p>
+                <p class="item-details fs-6">Quantity: {{ item.quantity }}</p>
+                <p class="item-details fs-6">Price: ${{ item.bookId.price }}</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
   </div>
 </div>

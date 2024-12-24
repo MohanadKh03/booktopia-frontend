@@ -4,6 +4,9 @@ import { Book } from '../../core/models/book.interface';
 import { AuthService } from '../../core/services/auth.service';
 import { User } from '../../core/models/user.interface';
 import { Router, RouterModule } from '@angular/router';
+import { toASCII } from 'punycode';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 interface CartItem {
   Book: Book;
   quantity: number;
@@ -11,7 +14,7 @@ interface CartItem {
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, CommonModule,FormsModule],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
 })
@@ -19,6 +22,13 @@ export class CartComponent implements OnInit {
   items: CartItem[] = [];
   total: number = 0;
   user: User | undefined;
+  copoun: string = "";
+  coupons: { key: string; value: number }[] = [
+    { key: 'MESSI', value: 1 },
+    { key: 'MOHANAD', value: 0.7 },
+    { key: 'MO\'MEN', value: 0.5 }
+];
+
   constructor(
     private cartService: CartService,
     private auth: AuthService,
@@ -108,7 +118,7 @@ export class CartComponent implements OnInit {
       return;
     }
     if (confirm('Confirm your order ?')) {
-      this.cartService.checkout(this.user.id).subscribe(
+      this.cartService.checkout(this.user.id,this.copoun).subscribe(
         (response: any) => {
           if (response.data) {
             this.items = [];
@@ -123,4 +133,17 @@ export class CartComponent implements OnInit {
       );
     }
   }
+
+  applyCoupon(coupon: string): void {
+    const foundCoupon = this.coupons.find(element => element.key === coupon);
+  
+    if (foundCoupon) {
+      this.total = this.total - (this.total * (foundCoupon.value));
+      alert(`Coupon applied! You saved ${foundCoupon.value*100}%`);
+    } else {
+      alert("No Coupons Found. Please try again.");
+    }
+  }
+  
+  
 }

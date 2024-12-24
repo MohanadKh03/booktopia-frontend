@@ -9,10 +9,13 @@ import { Order } from '../../../core/models/order.interface';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './order-history.component.html',
+  styleUrls: ['./order-history.component.css'],
 })
 export class OrderHistoryComponent implements OnInit {
   orders: Order[] = [];
   user: any;
+  toggleDetails: boolean = false;
+  orderDetails: any
 
   constructor(
     private userService: AuthService,
@@ -29,5 +32,14 @@ export class OrderHistoryComponent implements OnInit {
         console.log(response.data);
       }
     });
+  }
+
+  showDetails(orderId: string): void {
+    const order = this.orders.find((order) => order._id === orderId);
+    if (order) {
+      this.orderDetails = order;
+      console.log(this.orderDetails);
+    }
+    this.toggleDetails = !this.toggleDetails;
   }
 }

@@ -24,8 +24,10 @@ export class CartService {
     return this.httpClient.put<any>(url, {});
   }
 
-  checkout(userId: string) {
+  checkout(userId: string,copoun: string) {
     const url = `${baseUrl}/cart/checkout/${userId}`;
-    return this.httpClient.put<any>(url, {});
+    return this.httpClient.put<any>(url, {
+      copoun: copoun,
+    });
   }
 }
