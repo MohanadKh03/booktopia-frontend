@@ -12,7 +12,7 @@
             </div>
             <div class="flex-grow-1 ms-3">
               <h6 class="mb-1">Total Books</h6>
-              <h3 class="mb-0">150</h3>
+              <h3 class="mb-0">{{totals.totalBooks}}</h3>
               <small class="text-success">
                 <i class="fas fa-arrow-up me-1"></i>12% increase
               </small>
@@ -33,7 +33,7 @@
             </div>
             <div class="flex-grow-1 ms-3">
               <h6 class="mb-1">Total Orders</h6>
-              <h3 class="mb-0">45</h3>
+              <h3 class="mb-0">{{totals.totalOrders}}</h3>
               <small class="text-success">
                 <i class="fas fa-arrow-up me-1"></i>8% increase
               </small>
@@ -54,7 +54,7 @@
             </div>
             <div class="flex-grow-1 ms-3">
               <h6 class="mb-1">Total Users</h6>
-              <h3 class="mb-0">89</h3>
+              <h3 class="mb-0">{{totals.totalUsers}}</h3>
               <small class="text-success">
                 <i class="fas fa-arrow-up me-1"></i>15% increase
               </small>
@@ -69,15 +69,18 @@
         <div class="card-body">
           <div class="d-flex align-items-center">
             <div class="flex-shrink-0">
-              <div class="stats-icon bg-warning bg-opacity-10 text-warning">
+              <div class="stats-icon
+                bg-warning bg-opacity-10 text-warning">
                 <i class="fas fa-dollar-sign"></i>
               </div>
             </div>
             <div class="flex-grow-1 ms-3">
-              <h6 class="mb-1">Revenue</h6>
-              <h3 class="mb-0">$12,350</h3>
+              <h6 class="mb-1">Total Revenue</h6>
+              <h3 class="mb-0">$ {{
+                totalPrice
+                }}</h3>
               <small class="text-success">
-                <i class="fas fa-arrow-up me-1"></i>10% increase
+                <i class="fas fa-arrow-up me-1"></i>15% increase
               </small>
             </div>
           </div>
@@ -86,60 +89,52 @@
     </div>
   </div>
 
+
+
   <!-- Charts Row -->
   <div class="row g-4 mt-2">
+    <!-- Top Selling Books Section -->
     <div class="col-lg-8">
       <div class="card border-0 shadow-sm">
         <div class="card-body">
-          <div class="d-flex justify-content-between align-items-center mb-4">
-            <h5 class="card-title mb-0">Sales Overview</h5>
-            <div class="dropdown">
-              <button class="btn btn-link dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                This Month
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Last Week</a></li>
-                <li><a class="dropdown-item" href="#">Last Month</a></li>
-                <li><a class="dropdown-item" href="#">Last Year</a></li>
-              </ul>
+          <h5 class="card-title mb-4">Top Selling Books</h5>
+          <div class="top-selling-books">
+            <div *ngFor="let book of topSellingBooks" class="d-flex justify-content-between align-items-center mb-3">
+              <div>
+                <h6 class="mb-0">{{ book.title }}</h6>
+                <small class="text-muted">Price: ${{ book.price }}</small>
+                <br>
+                <small class="text-muted">{{ book.sold }} sold</small>
+              </div>
+              <div style="width: 60%; margin-left: 10px;">
+                <div class="progress" style="height: 10px;">
+                  <div class="progress-bar" [ngStyle]="{'width': (book.sold / book.stock * 100) + '%'}"
+                    [class.bg-success]="book.sold / book.stock > 0.5"
+                    [class.bg-warning]="book.sold / book.stock <= 0.5 && book.sold / book.stock > 0.2"
+                    [class.bg-danger]="book.sold / book.stock <= 0.2">
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <!-- Add Chart Component Here -->
-          <div class="chart-placeholder" style="height: 300px"></div>
         </div>
       </div>
     </div>
 
+    <!-- Top Categories Section -->
     <div class="col-lg-4">
       <div class="card border-0 shadow-sm">
         <div class="card-body">
           <h5 class="card-title mb-4">Top Categories</h5>
           <div class="category-stats">
-            <div class="d-flex justify-content-between align-items-center mb-3">
+            <div *ngFor="let topCategorie of topCategories"
+              class="d-flex justify-content-between align-items-center mb-3">
               <div>
-                <h6 class="mb-0">Fiction</h6>
-                <small class="text-muted">45 books</small>
+                <h6 class="mb-0">{{ topCategorie.category }}</h6>
+                <small class="text-muted">{{ topCategorie.count }} books</small>
               </div>
               <div class="progress" style="width: 100px">
-                <div class="progress-bar" style="width: 70%"></div>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <div>
-                <h6 class="mb-0">Technology</h6>
-                <small class="text-muted">32 books</small>
-              </div>
-              <div class="progress" style="width: 100px">
-                <div class="progress-bar" style="width: 55%"></div>
-              </div>
-            </div>
-            <div class="d-flex justify-content-between align-items-center">
-              <div>
-                <h6 class="mb-0">Business</h6>
-                <small class="text-muted">28 books</small>
-              </div>
-              <div class="progress" style="width: 100px">
-                <div class="progress-bar" style="width: 40%"></div>
+                <div class="progress-bar" [ngStyle]="{'width': (topCategorie.count / totalCount * 100) + '%'}"></div>
               </div>
             </div>
           </div>
@@ -147,7 +142,11 @@
       </div>
     </div>
   </div>
+
+
 </div>
+
+
 <!-- Navigation Links -->
 <div class="container p-2 border-bottom border-black">
   <ul class="nav d-flex justify-content-evenly">
